@@ -1,4 +1,4 @@
-<img width="1894" height="613" alt="image" src="https://github.com/user-attachments/assets/e6e8a31e-0313-4fe1-84d3-cdfb2701692f" /># Vidya-Mitra-AI-Tutor
+
 Vidya Mitra: A localized Generative AI educational assistant for rural Gujarat, supporting the GSEB curriculum and 'Gujlish' voice interaction. Developed for the Atmiya AI Hackathon 2026.
 Vidya Mitra (વિદ્યા મિત્ર) - AI Tutor for Rural Gujarat
 
