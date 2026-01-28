@@ -13,7 +13,7 @@ Vidya Mitra is a localized Generative AI educational assistant designed specific
 
 Students in rural areas often struggle with:
 
-Language Barrier: General AI tools provide "robotic" translations that don't match local dialects.
+Language Barrier: General AI tools provide "robotic" translations that don't match local dialects
 Accessibility: Complex typing is difficult for beginners; voice interaction is needed for better reach.
 Curriculum Alignment: Global AI tools lack specific knowledge of local Gujarat State Board textbooks.
 
