@@ -1,0 +1,2419 @@
+{
+  "version": {
+    "_version": 13.07,
+    "autoSaveFromRestore": false,
+    "canvasTemplates": [],
+    "components": [],
+    "creatorID": 1927436,
+    "manualSave": false,
+    "model": {},
+    "name": "Initial Version",
+    "platformData": {
+      "slots": [],
+      "intents": [
+        {
+          "key": "None",
+          "name": "None",
+          "slots": [],
+          "inputs": [],
+          "noteID": null
+        }
+      ],
+      "settings": {
+        "restart": true,
+        "repeat": 100,
+        "locales": [
+          "en-US"
+        ],
+        "globalNoMatch": {
+          "type": "static",
+          "prompt": {
+            "content": [
+              {
+                "children": [
+                  {
+                    "text": "Sorry, I didn’t get that. Please try again."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "messageDelay": {
+          "durationMilliseconds": 500
+        },
+        "defaultVoice": "elevenlabs:eleven_turbo_v2_5:ZF6FPAbjXT4488VcRRnw",
+        "deepgramASR": {
+          "silenceWaitMS": 10,
+          "punctuationWaitMS": 200,
+          "partialWaitMS": 1000,
+          "interruptionWaitWords": 1,
+          "audioCue": null
+        }
+      },
+      "publishing": {
+        "avatar": "https://cdn.voiceflow.com/assets/logo.png",
+        "color": "#397DFF",
+        "description": "Hi, how can I help you today?",
+        "feedback": false,
+        "image": "https://cdn.voiceflow.com/assets/logo.png",
+        "persistence": "localStorage",
+        "position": "right",
+        "spacing": {
+          "side": 24,
+          "bottom": 24
+        },
+        "title": "Your AI agent",
+        "watermark": true,
+        "audioInterface": true
+      },
+      "platform": "webchat"
+    },
+    "programResources": {
+      "flows": {},
+      "agents": {
+        "69798191db21490007449f69": {
+          "name": "Input clarification and content routing",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": null,
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f72",
+              "name": "Unclear or non-educational request",
+              "variables": [],
+              "description": "Triggered when the request is unrelated to studies (entertainment, violence, games) or is unclear even after detection.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f73",
+              "name": "Requires content correction or Gujlish decoding",
+              "variables": [],
+              "description": "Detected voice-to-text, Gujlish, or rural slang requiring correction and mapping to the correct GSEB concept.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f74",
+              "name": "GSEB-aligned clear question",
+              "variables": [],
+              "description": "The request is clearly educational and fits the GSEB curriculum; ready for answer delivery.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "When a student enters their question, analyze for clarity, presence of 'Gujlish', rural slang, or voice-to-text errors. If unclear or outside the GSEB syllabus, clarify or redirect appropriately. If educational and clear, route to the next steps for lesson delivery. Welcome the student with kem cho mitr and use  simple gujrati instruction to the student and just reply in gijarati no english explanation is required. \"Greet the user only once at the very beginning. For all other messages, respond directly to the question based on the identified subject (Science, Math, or History).\"\n",
+          "functionTools": [],
+          "webSearchTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Search the web when external, fresh, or currently updated information is required to answer the user's query accurately."
+          },
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+          },
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6a": {
+          "name": "Gujlish and input auto-correction",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": null,
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f75",
+              "name": "Corrected and mapped to GSEB topic",
+              "variables": [],
+              "description": "After auto-correction, the query is now mapped to the appropriate GSEB lesson content.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f76",
+              "name": "Unable to auto-correct or unknown concept",
+              "variables": [],
+              "description": "Correction failed or the term is not in the GSEB syllabus.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "Analyze the detected question for Gujlish, rural slang, or common errors (e.g., 'prakash-shakti' instead of 'prakash-sanshleshan'). Map it to the correct term and concept as per the GSEB syllabus. Inform the student of the corrected term in Gujarati, and then proceed to the lesson.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+          },
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6b": {
+          "name": "Adaptive teaching with rural contextualization",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+          },
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f77",
+              "name": "Student accepts quiz",
+              "variables": [],
+              "description": "The student wants to attempt a knowledge check quiz.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f78",
+              "name": "Student rejects quiz or wants more explanation",
+              "variables": [],
+              "description": "The student does not want a quiz or requests further simplification/elaboration.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Displays a carousel of up to 10 cards, each containing a title, description, image, and optional action buttons."
+          },
+          "instructions": "Based on the clarified or corrected question, deliver the answer strictly as per the GSEB syllabus. Determine {length} and {vf_memory}: If 'Direct', give a 1-sentence answer; if 'Medium', 3 sentences; if 'Detailed', provide a step-wise breakdown using the '3-Step Rule' and include a rural Gujarat context example (e.g., farming, Sabarmati river, dairy, local temple, etc.). Always use clear Gujarati script and simple language, especially if {vf_memory} indicates the student needs extra help. After explaining, always ask: 'Mitra, do you want to take a quick 1-question quiz to test your knowledge?'",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+          },
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6c": {
+          "name": "Repeat explanation or simplify further",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+          },
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f79",
+              "name": "Student now ready for quiz",
+              "variables": [],
+              "description": "The student is ready to attempt a quiz after further explanation.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f7a",
+              "name": "Student still not ready or confused",
+              "variables": [],
+              "description": "Student remains confused or requests information outside the GSEB scope.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "If the student is struggling (detected via {vf_memory} or explicit feedback), use even simpler Gujarati and break the answer down further. Repeat the 3-step explanation with a new or simpler rural example. Again, end by offering the quick quiz.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+          },
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6d": {
+          "name": "Quiz generation and knowledge check",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": null,
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f7b",
+              "name": "Student answers correctly",
+              "variables": [],
+              "description": "The student selects the correct answer.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f7c",
+              "name": "Student answers incorrectly",
+              "variables": [],
+              "description": "The student selects an incorrect answer.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Displays a UI picker when the user needs to select one option from a predefined list (up to 5 options)."
+          },
+          "description": null,
+          "carouselTool": null,
+          "instructions": "Generate a single, clear multiple-choice quiz question in Gujarati directly related to the topic just explained. Use 4 options with only one correct answer, delivered in Gujarati script. Wait for the student's response.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": null,
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6e": {
+          "name": "Positive reinforcement and completion",
+          "endTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+          },
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+          },
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f7d",
+              "name": "Session ends",
+              "variables": [],
+              "description": "The learning session concludes positively.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "Congratulate the student warmly in Gujarati for their correct answer. Encourage them to keep learning and tell them that their Vidya Mitra is always here to help. Politely end the session unless the student asks another question.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": null,
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f6f": {
+          "name": "Explain the correct answer and encourage retry",
+          "endTool": null,
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+          },
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f7e",
+              "name": "Student wants another quiz",
+              "variables": [],
+              "description": "Student requests follow-up quiz to reinforce learning.",
+              "messages": null
+            },
+            {
+              "id": "69798191db21490007449f7f",
+              "name": "Student wants new or different topic",
+              "variables": [],
+              "description": "Student asks a new question or different topic.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "Gently explain in Gujarati why the correct answer is right, using the '3-Step Rule' and rural example if needed. Encourage the student and ask if they want another quiz on the same topic or a new question.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": null,
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f70": {
+          "name": "Non-educational or inappropriate content handler",
+          "endTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+          },
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": null,
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f80",
+              "name": "Session ends after redirection",
+              "variables": [],
+              "description": "Session is concluded due to inappropriate or off-topic input.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "If the student's message is unrelated to studies (entertainment, violence, games, etc.), gently redirect: 'Hu tamaro Vidya Mitra chu. Chalo aapne abhyas par dhyan apiye!'. Encourage focus on learning before politely ending the session.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": null,
+          "mcpIntegrationTools": []
+        },
+        "69798191db21490007449f71": {
+          "name": "Unknown or out-of-syllabus answer handler",
+          "endTool": {
+            "enabled": true,
+            "messages": null,
+            "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+          },
+          "settings": {
+            "model": "claude-4-sonnet",
+            "maxTokens": 5000,
+            "temperature": 0.3,
+            "reasoningEffort": null
+          },
+          "cardTool": null,
+          "apiTools": [],
+          "pathTools": [
+            {
+              "id": "69798191db21490007449f81",
+              "name": "Session ends after unknown answer",
+              "variables": [],
+              "description": "Session ends kindly because the question is outside the syllabus or not answerable.",
+              "messages": null
+            }
+          ],
+          "flowTools": [],
+          "buttonTool": null,
+          "description": null,
+          "carouselTool": null,
+          "instructions": "If a question cannot be answered based on GSEB syllabus, reply in Gujarati: 'Mane kshama karjo, hu aa vise tapas kari ne tamne janavis.'. End the session politely, inviting the student to ask something else from the syllabus.",
+          "functionTools": [],
+          "webSearchTool": null,
+          "callForwardTool": null,
+          "integrationTools": [],
+          "knowledgeBaseTool": null,
+          "mcpIntegrationTools": []
+        }
+      },
+      "prompts": {},
+      "apiTools": {},
+      "messages": {},
+      "globalPrompts": null,
+      "integrationTools": {},
+      "mcpIntegrationTools": {}
+    },
+    "prototype": {
+      "type": "chat",
+      "data": {
+        "name": "Vidya Mitra",
+        "locales": [
+          "en-US"
+        ]
+      },
+      "model": {
+        "intents": [],
+        "slots": []
+      },
+      "context": {
+        "stack": [
+          {
+            "diagramID": "69798191db21490007449f82",
+            "storage": {},
+            "variables": {}
+          }
+        ],
+        "variables": {}
+      },
+      "surveyorContext": {
+        "platform": "webchat",
+        "slotsMap": {},
+        "extraSlots": [],
+        "cmsEntities": {},
+        "extraIntents": [],
+        "cmsVariables": {
+          "sessions": {
+            "isSystem": true,
+            "description": "The number of times a particular user has opened the app.",
+            "defaultValue": null
+          },
+          "user_id": {
+            "isSystem": true,
+            "description": "The user's unique ID.",
+            "defaultValue": null
+          },
+          "timestamp": {
+            "isSystem": true,
+            "description": "UNIX timestamp (number of seconds since January 1st, 1970 at UTC).",
+            "defaultValue": null
+          },
+          "platform": {
+            "isSystem": true,
+            "description": "The platform your agent is running on (e.g. \"voiceflow\").",
+            "defaultValue": null
+          },
+          "locale": {
+            "isSystem": true,
+            "description": "The locale of the user (eg. en-US, en-CA, it-IT, fr-FR, ...).",
+            "defaultValue": null
+          },
+          "intent_confidence": {
+            "isSystem": true,
+            "description": "The confidence interval (measured as a value from 0 to 100) for the most recently matched intent.",
+            "defaultValue": null
+          },
+          "last_response": {
+            "isSystem": true,
+            "description": "The agent's last response (text/speak) in a string.",
+            "defaultValue": null
+          },
+          "last_event": {
+            "isSystem": true,
+            "description": "The object containing the last event that the user client has triggered.",
+            "defaultValue": null
+          },
+          "last_utterance": {
+            "isSystem": true,
+            "description": "The user's last utterance in a text string.",
+            "defaultValue": null
+          },
+          "vf_memory": {
+            "isSystem": true,
+            "description": "Last 10 user inputs and agent responses in a string (e.g. \"agent: How can i help?\"\nuser: What's the weather today?).",
+            "defaultValue": null
+          },
+          "vf_date": {
+            "isSystem": true,
+            "description": "Current date in the format \"Jan 1, 2025\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_time": {
+            "isSystem": true,
+            "description": "Current time in the format \"16:37\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_day": {
+            "isSystem": true,
+            "description": "Current day of month in the format \"1\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_month": {
+            "isSystem": true,
+            "description": "Current month in the format \"January\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_year": {
+            "isSystem": true,
+            "description": "Current year in the format \"2025\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_now": {
+            "isSystem": true,
+            "description": "Current date and time in the format \"Jan 1, 2025, 16:37\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_user_timezone": {
+            "isSystem": true,
+            "description": "The user's timezone in the format \"America/Toronto\", if available. Defaults to the project timezone.",
+            "defaultValue": null
+          },
+          "vf_weekday": {
+            "isSystem": true,
+            "description": "Current day of week in the format \"Monday\". You can modify the timezone in project settings.",
+            "defaultValue": null
+          },
+          "vf_transcript_id": {
+            "isSystem": true,
+            "description": "The transcript ID of the current conversation. Only available if transcripts are enabled.",
+            "defaultValue": null
+          }
+        },
+        "usedIntentsSet": [],
+        "functionDefinitions": {},
+        "referencedAgentsIDs": [
+          "69798191db21490007449f69",
+          "69798191db21490007449f6a",
+          "69798191db21490007449f6b",
+          "69798191db21490007449f6c",
+          "69798191db21490007449f6d",
+          "69798191db21490007449f6e",
+          "69798191db21490007449f6f",
+          "69798191db21490007449f70",
+          "69798191db21490007449f71"
+        ],
+        "referencedPromptIDs": [],
+        "referencedAPIToolIDs": [],
+        "referencedResponseIDs": [],
+        "referencedIntegrationToolIDs": [],
+        "referencedMCPIntegrationToolIDs": [],
+        "interfaces": [],
+        "permissions": [],
+        "usedEventsSet": [],
+        "goToIntentsSet": []
+      },
+      "settings": {},
+      "platform": "webchat"
+    },
+    "settings": {
+      "voice": {
+        "stt": {
+          "provider": "deepgram",
+          "model": "flux",
+          "locale": "en",
+          "punctuationWaitMS": 200,
+          "partialWaitMS": 1000,
+          "silenceWaitMS": 10,
+          "interruptionWaitWords": 1
+        },
+        "tts": {
+          "provider": "cartesia",
+          "model": "sonic-3",
+          "voice": "829ccd10-f8b3-43cd-b8a0-4aeaa81f3b30",
+          "settings": {
+            "speed": 1
+          }
+        },
+        "failureMessage": "We’re sorry, but the call cannot be completed at this time. Please try again later.",
+        "hasCallRecording": true,
+        "audioSync": false,
+        "silenceTimeoutMs": 55000
+      },
+      "widget": {
+        "type": "chat",
+        "chat": {
+          "renderMode": "embed",
+          "headerImage": {
+            "enabled": true,
+            "url": "https://cm4-production-assets.s3.amazonaws.com/1769574421895-screenshot-2026-01-25-081151.png"
+          },
+          "agentImage": {
+            "enabled": true,
+            "url": "https://cm4-production-assets.s3.amazonaws.com/1769574475932-gemini_generated_image_y98lfky98lfky98l-1.png"
+          },
+          "banner": {
+            "title": "Vidhya Mitra",
+            "description": "\"ગામડાના ગૌરવ સાથે, હવે શિક્ષણ બનશે સાવ સહેલું!\"",
+            "enabled": true,
+            "imageURL": "https://cm4-production-assets.s3.amazonaws.com/1769574524863-gemini_generated_image_y98lfky98lfky98l-1.png"
+          },
+          "placeholderText": "\"શું મૂંઝવણ છે? અહીં લખો, આપણે સાથે ઉકેલીશું!\"....",
+          "disclaimer": {
+            "enabled": false,
+            "title": "Privacy notice",
+            "description": "Before we can proceed with your conversation, we kindly ask you to review and accept our privacy policy, outlining how we handle and protect your personal information throughout our services.",
+            "primaryButtonText": "Submit",
+            "secondaryButtonText": "Privacy policy",
+            "secondaryButtonURL": ""
+          },
+          "aiDisclaimer": {
+            "text": "Generated by AI, double-check for accuracy.",
+            "enabled": false
+          },
+          "handoffToAgentImageURL": "",
+          "voiceInput": true,
+          "voiceOutput": true,
+          "voiceMode": true
+        },
+        "voice": {
+          "renderMode": "full",
+          "content": {
+            "talkingText": "Talk to interrupt",
+            "endButtonText": "End",
+            "listeningText": "Listening...",
+            "startButtonText": "Start a call",
+            "callToActionText": "How can I help you?"
+          }
+        },
+        "common": {
+          "sideSpacing": "20",
+          "bottomSpacing": "20",
+          "position": "right",
+          "fontFamily": "UCity Pro",
+          "primaryColor": {
+            "color": "#03A9F4",
+            "palette": {
+              "50": "#E6F7FF",
+              "100": "#CDEFFE",
+              "200": "#9ADFFE",
+              "300": "#68CFFD",
+              "400": "#35BFFD",
+              "500": "#03AEFC",
+              "600": "#028CCA",
+              "700": "#026997",
+              "800": "#014665",
+              "900": "#012332"
+            }
+          },
+          "poweredBy": true,
+          "launcher": {
+            "type": "icon",
+            "text": "Test your agent"
+          },
+          "footerLink": {
+            "enabled": false
+          },
+          "persistence": "localStorage"
+        },
+        "security": {
+          "approvedDomains": {
+            "enabled": false,
+            "domains": ""
+          },
+          "disableTranscript": false
+        }
+      },
+      "memory": {
+        "turns": 50
+      },
+      "session": {
+        "idleTimeout": {
+          "enabled": true,
+          "timeoutMs": 300000
+        }
+      },
+      "llmFallback": {
+        "models": {
+          "open-ai": {
+            "*": {
+              "provider": "anthropic",
+              "model": "claude-4-sonnet"
+            }
+          },
+          "anthropic": {
+            "*": {
+              "provider": "open-ai",
+              "model": "gpt-4.1-2025-04-14"
+            }
+          },
+          "groq": {
+            "*": {
+              "provider": "anthropic",
+              "model": "claude-4-sonnet"
+            }
+          },
+          "google": {
+            "*": {
+              "provider": "anthropic",
+              "model": "claude-4-sonnet"
+            }
+          }
+        }
+      },
+      "globalNoMatch": {
+        "type": "static",
+        "prompt": [
+          {
+            "text": [
+              "Sorry, I didn’t get that. Please try again."
+            ]
+          }
+        ]
+      },
+      "intentClassification": {
+        "type": "rag",
+        "params": {
+          "model": "claude-3.5-haiku",
+          "temperature": 0.1
+        },
+        "promptWrapper": null
+      }
+    },
+    "topics": [
+      {
+        "type": "DIAGRAM",
+        "sourceID": "64dbb6696a8fab0013dba194"
+      }
+    ],
+    "variables": [
+      "sessions",
+      "user_id",
+      "timestamp",
+      "platform",
+      "locale",
+      "intent_confidence",
+      "last_response",
+      "last_event",
+      "last_utterance",
+      "vf_memory",
+      "vf_date",
+      "vf_time",
+      "vf_day",
+      "vf_month",
+      "vf_year",
+      "vf_now",
+      "vf_user_timezone",
+      "vf_weekday",
+      "vf_transcript_id"
+    ],
+    "_id": "697981910cc5c60e8ce896e9",
+    "updatedAt": "2026-01-28T07:14:29.346Z",
+    "publishedAt": "2024-09-27T16:54:27.996Z",
+    "domains": [
+      {
+        "id": "cla06iyr900b206pkh8d4ap8n",
+        "name": "Home",
+        "live": true,
+        "topicIDs": [
+          "64dbb6696a8fab0013dba194"
+        ],
+        "rootDiagramID": "64dbb6696a8fab0013dba194",
+        "updatedBy": 1927436,
+        "updatedAt": "2026-01-28T03:25:05.935Z"
+      }
+    ],
+    "projectID": "697981910cc5c60e8ce896e8",
+    "rootDiagramID": "69798191db21490007449f82",
+    "templateDiagramID": "64dbb6696a8fab0013dba195"
+  },
+  "diagrams": {
+    "69798191db21490007449f82": {
+      "name": "Vidya Mitra",
+      "type": "TOPIC",
+      "zoom": 78.33333333333333,
+      "nodes": {
+        "69798175db21490007449f48": {
+          "nodeID": "69798175db21490007449f48",
+          "type": "start",
+          "data": {
+            "name": "Start",
+            "color": "#56b365",
+            "triggers": [],
+            "description": null,
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {
+                "next": {
+                  "id": "69798175db21490007449f49",
+                  "type": "next",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          64.34,
+                          22
+                        ]
+                      },
+                      {
+                        "point": [
+                          265,
+                          27
+                        ]
+                      }
+                    ]
+                  },
+                  "target": "cmkxgpj9701yb070idshq4ri9"
+                }
+              },
+              "dynamic": []
+            },
+            "steps": []
+          },
+          "coords": [
+            0,
+            0
+          ]
+        },
+        "cmkxgpj9701yk070i7rt83utn": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yk070i7rt83utn",
+          "data": {
+            "agentID": "69798191db21490007449f69",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f72": {
+                  "id": "69798191db21490007449f72",
+                  "type": "",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          596.4,
+                          222
+                        ]
+                      },
+                      {
+                        "point": [
+                          645.7,
+                          222
+                        ]
+                      },
+                      {
+                        "point": [
+                          645.7,
+                          687
+                        ]
+                      },
+                      {
+                        "point": [
+                          695,
+                          687
+                        ],
+                        "allowedToTop": true
+                      }
+                    ]
+                  },
+                  "target": "cmkxgpj9701yi070ib35kaw2m"
+                },
+                "69798191db21490007449f73": {
+                  "id": "69798191db21490007449f73",
+                  "type": "",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          596.4,
+                          292.4
+                        ]
+                      },
+                      {
+                        "point": [
+                          645.7,
+                          292.4
+                        ]
+                      },
+                      {
+                        "point": [
+                          645.7,
+                          27
+                        ]
+                      },
+                      {
+                        "point": [
+                          695,
+                          27
+                        ],
+                        "allowedToTop": true
+                      }
+                    ]
+                  },
+                  "target": "cmkxgpj9701yc070i5gfvfjgp"
+                },
+                "69798191db21490007449f74": {
+                  "id": "69798191db21490007449f74",
+                  "type": "",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          596.4,
+                          362.8
+                        ]
+                      },
+                      {
+                        "point": [
+                          695,
+                          357
+                        ]
+                      }
+                    ]
+                  },
+                  "target": "cmkxgpj9701yd070ifp0hbmn0"
+                },
+                "6979c5bac3cad8efe89eaab4": {
+                  "id": "6979c5bbd9fd305c2990e201",
+                  "target": null,
+                  "type": "",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          263.6,
+                          425.2
+                        ],
+                        "reversed": true
+                      },
+                      {
+                        "point": [
+                          145.94,
+                          425.2
+                        ]
+                      },
+                      {
+                        "point": [
+                          145.94,
+                          909.4
+                        ]
+                      },
+                      {
+                        "point": [
+                          169.94,
+                          909.4
+                        ],
+                        "allowedToTop": false
+                      }
+                    ]
+                  }
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          },
+          "coords": [
+            0,
+            0
+          ]
+        },
+        "cmkxgpj9701yl070ibqmva3ot": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yl070ibqmva3ot",
+          "data": {
+            "agentID": "69798191db21490007449f6a",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f75": {
+                  "id": "69798191db21490007449f75",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yd070ifp0hbmn0"
+                },
+                "69798191db21490007449f76": {
+                  "id": "69798191db21490007449f76",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yj070ihgep9avi"
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701ym070i1yv7ckg0": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701ym070i1yv7ckg0",
+          "data": {
+            "agentID": "69798191db21490007449f6b",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f77": {
+                  "id": "69798191db21490007449f77",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yf070iao4063i0"
+                },
+                "69798191db21490007449f78": {
+                  "id": "69798191db21490007449f78",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701ye070ibmtid0h1"
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yn070i99r6b97r": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yn070i99r6b97r",
+          "data": {
+            "agentID": "69798191db21490007449f6c",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f79": {
+                  "id": "69798191db21490007449f79",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yf070iao4063i0"
+                },
+                "69798191db21490007449f7a": {
+                  "id": "69798191db21490007449f7a",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yj070ihgep9avi"
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yo070i5gjz75tu": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yo070i5gjz75tu",
+          "data": {
+            "agentID": "69798191db21490007449f6d",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f7b": {
+                  "id": "69798191db21490007449f7b",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yg070ig6ur8f60"
+                },
+                "69798191db21490007449f7c": {
+                  "id": "69798191db21490007449f7c",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yh070i0hyr59lz"
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yp070i3kz48nvn": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yp070i3kz48nvn",
+          "data": {
+            "agentID": "69798191db21490007449f6e",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f7d": {
+                  "id": "69798191db21490007449f7d",
+                  "type": "",
+                  "data": {},
+                  "target": null
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yq070ihtth02a5": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yq070ihtth02a5",
+          "data": {
+            "agentID": "69798191db21490007449f6f",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f7e": {
+                  "id": "69798191db21490007449f7e",
+                  "type": "",
+                  "data": {},
+                  "target": "cmkxgpj9701yf070iao4063i0"
+                },
+                "69798191db21490007449f7f": {
+                  "id": "69798191db21490007449f7f",
+                  "type": "",
+                  "data": {
+                    "points": [
+                      {
+                        "point": [
+                          1553.6,
+                          620.8
+                        ],
+                        "reversed": true
+                      },
+                      {
+                        "point": [
+                          1074.3,
+                          620.8
+                        ]
+                      },
+                      {
+                        "point": [
+                          1074.3,
+                          27
+                        ]
+                      },
+                      {
+                        "point": [
+                          595,
+                          27
+                        ],
+                        "reversed": true,
+                        "allowedToTop": true
+                      }
+                    ]
+                  },
+                  "target": "cmkxgpj9701yb070idshq4ri9"
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yr070i2fgt28f2": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701yr070i2fgt28f2",
+          "data": {
+            "agentID": "69798191db21490007449f70",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f80": {
+                  "id": "69798191db21490007449f80",
+                  "type": "",
+                  "data": {},
+                  "target": null
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701ys070i826jc6jd": {
+          "type": "agent",
+          "nodeID": "cmkxgpj9701ys070i826jc6jd",
+          "data": {
+            "agentID": "69798191db21490007449f71",
+            "listenForOtherTriggers": false,
+            "exitEveryConversationalTurn": false,
+            "portsV2": {
+              "byKey": {
+                "69798191db21490007449f81": {
+                  "id": "69798191db21490007449f81",
+                  "type": "",
+                  "data": {},
+                  "target": null
+                }
+              },
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yb070idshq4ri9": {
+          "type": "block",
+          "coords": [
+            430,
+            0
+          ],
+          "nodeID": "cmkxgpj9701yb070idshq4ri9",
+          "data": {
+            "name": "Input clarification and content routing",
+            "color": "#A1ADBA",
+            "steps": [
+              "cmkxgpj9701yk070i7rt83utn"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            },
+            "triggers": []
+          }
+        },
+        "cmkxgpj9701yc070i5gfvfjgp": {
+          "type": "block",
+          "coords": [
+            860,
+            0
+          ],
+          "nodeID": "cmkxgpj9701yc070i5gfvfjgp",
+          "data": {
+            "name": "Gujlish and input auto-correction",
+            "color": "#5b9fd7",
+            "steps": [
+              "cmkxgpj9701yl070ibqmva3ot"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yd070ifp0hbmn0": {
+          "type": "block",
+          "coords": [
+            860,
+            330
+          ],
+          "nodeID": "cmkxgpj9701yd070ifp0hbmn0",
+          "data": {
+            "name": "Adaptive teaching with rural contextualization",
+            "color": "#5b9fd7",
+            "steps": [
+              "cmkxgpj9701ym070i1yv7ckg0"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701ye070ibmtid0h1": {
+          "type": "block",
+          "coords": [
+            1290,
+            0
+          ],
+          "nodeID": "cmkxgpj9701ye070ibmtid0h1",
+          "data": {
+            "name": "Repeat explanation or simplify further",
+            "color": "#5b9fd7",
+            "steps": [
+              "cmkxgpj9701yn070i99r6b97r"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yf070iao4063i0": {
+          "type": "block",
+          "coords": [
+            1290,
+            330
+          ],
+          "nodeID": "cmkxgpj9701yf070iao4063i0",
+          "data": {
+            "name": "Quiz generation and knowledge check",
+            "color": "#5b9fd7",
+            "steps": [
+              "cmkxgpj9701yo070i5gjz75tu"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yg070ig6ur8f60": {
+          "type": "block",
+          "coords": [
+            1720,
+            0
+          ],
+          "nodeID": "cmkxgpj9701yg070ig6ur8f60",
+          "data": {
+            "name": "Positive reinforcement and completion",
+            "color": "#56b365",
+            "steps": [
+              "cmkxgpj9701yp070i3kz48nvn"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yh070i0hyr59lz": {
+          "type": "block",
+          "coords": [
+            1720,
+            330
+          ],
+          "nodeID": "cmkxgpj9701yh070i0hyr59lz",
+          "data": {
+            "name": "Explain the correct answer and encourage retry",
+            "color": "#5b9fd7",
+            "steps": [
+              "cmkxgpj9701yq070ihtth02a5"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yi070ib35kaw2m": {
+          "type": "block",
+          "coords": [
+            860,
+            660
+          ],
+          "nodeID": "cmkxgpj9701yi070ib35kaw2m",
+          "data": {
+            "name": "Non-educational or inappropriate content handler",
+            "color": "#CB627B",
+            "steps": [
+              "cmkxgpj9701yr070i2fgt28f2"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        },
+        "cmkxgpj9701yj070ihgep9avi": {
+          "type": "block",
+          "coords": [
+            1290,
+            660
+          ],
+          "nodeID": "cmkxgpj9701yj070ihgep9avi",
+          "data": {
+            "name": "Unknown or out-of-syllabus answer handler",
+            "color": "#CB627B",
+            "steps": [
+              "cmkxgpj9701ys070i826jc6jd"
+            ],
+            "portsV2": {
+              "byKey": {},
+              "builtIn": {},
+              "dynamic": []
+            }
+          }
+        }
+      },
+      "offsetX": -1.8542776813260957,
+      "offsetY": 21.587433245414275,
+      "modified": 1769570677,
+      "variables": [],
+      "creatorID": 1927436,
+      "_id": "697981910cc5c60e8ce896eb",
+      "diagramID": "69798191db21490007449f82",
+      "versionID": "697981910cc5c60e8ce896e9"
+    }
+  },
+  "flows": [],
+  "entities": [],
+  "entityVariants": [],
+  "intents": [
+    {
+      "id": "None",
+      "name": "None",
+      "createdByID": 1927436,
+      "folderID": null,
+      "description": null,
+      "automaticReprompt": false,
+      "entityOrder": [],
+      "automaticRepromptSettings": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    }
+  ],
+  "utterances": [],
+  "requiredEntities": [],
+  "folders": [],
+  "responses": [],
+  "responseMessages": [],
+  "responseDiscriminators": [],
+  "variables": [
+    {
+      "id": "sessions",
+      "name": "sessions",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "number",
+      "description": "The number of times a particular user has opened the app.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "user_id",
+      "name": "user_id",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The user's unique ID.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "timestamp",
+      "name": "timestamp",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "UNIX timestamp (number of seconds since January 1st, 1970 at UTC).",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "platform",
+      "name": "platform",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The platform your agent is running on (e.g. \"voiceflow\").",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "locale",
+      "name": "locale",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The locale of the user (eg. en-US, en-CA, it-IT, fr-FR, ...).",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "intent_confidence",
+      "name": "intent_confidence",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "number",
+      "description": "The confidence interval (measured as a value from 0 to 100) for the most recently matched intent.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "last_response",
+      "name": "last_response",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The agent's last response (text/speak) in a string.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "last_event",
+      "name": "last_event",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "any",
+      "description": "The object containing the last event that the user client has triggered.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "last_utterance",
+      "name": "last_utterance",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The user's last utterance in a text string.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_memory",
+      "name": "vf_memory",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "Last 10 user inputs and agent responses in a string (e.g. \"agent: How can i help?\"\nuser: What's the weather today?).",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_date",
+      "name": "vf_date",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "date",
+      "description": "Current date in the format \"Jan 1, 2025\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_time",
+      "name": "vf_time",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "Current time in the format \"16:37\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_day",
+      "name": "vf_day",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "number",
+      "description": "Current day of month in the format \"1\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_month",
+      "name": "vf_month",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "Current month in the format \"January\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_year",
+      "name": "vf_year",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "number",
+      "description": "Current year in the format \"2025\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_now",
+      "name": "vf_now",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "date",
+      "description": "Current date and time in the format \"Jan 1, 2025, 16:37\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_user_timezone",
+      "name": "vf_user_timezone",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The user's timezone in the format \"America/Toronto\", if available. Defaults to the project timezone.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_weekday",
+      "name": "vf_weekday",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "Current day of week in the format \"Monday\". You can modify the timezone in project settings.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "vf_transcript_id",
+      "name": "vf_transcript_id",
+      "createdByID": 1927436,
+      "folderID": null,
+      "color": "#515A63",
+      "isArray": false,
+      "isSystem": true,
+      "datatype": "text",
+      "description": "The transcript ID of the current conversation. Only available if transcripts are enabled.",
+      "defaultValue": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    }
+  ],
+  "workflows": [
+    {
+      "id": "66df755be937eb000784abb2",
+      "name": "Start workflow",
+      "createdByID": 1927436,
+      "folderID": null,
+      "status": null,
+      "isStart": true,
+      "diagramID": "69798191db21490007449f82",
+      "assigneeID": null,
+      "description": "",
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T09:31:48.000Z",
+      "updatedByID": 1927436
+    }
+  ],
+  "attachments": [],
+  "cardButtons": [],
+  "prompts": [],
+  "promptMessages": [],
+  "events": [],
+  "agents": [
+    {
+      "id": "69798191db21490007449f69",
+      "name": "Input clarification and content routing",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "When a student enters their question, analyze for clarity, presence of 'Gujlish', rural slang, or voice-to-text errors. If unclear or outside the GSEB syllabus, clarify or redirect appropriately. If educational and clear, route to the next steps for lesson delivery. Welcome the student with kem cho mitr and use  simple gujrati instruction to the student and just reply in gijarati no english explanation is required. \"Greet the user only once at the very beginning. For all other messages, respond directly to the question based on the identified subject (Science, Math, or History)."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f72",
+        "69798191db21490007449f73",
+        "69798191db21490007449f74",
+        "6979c5bac3cad8efe89eaab4"
+      ],
+      "webSearchTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Search the web when external, fresh, or currently updated information is required to answer the user's query accurately."
+      },
+      "knowledgeBaseTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+      },
+      "buttonTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Displays a UI picker when the user needs to select one option from a predefined list (up to 5 options)."
+      },
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T09:55:26.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6a",
+      "name": "Gujlish and input auto-correction",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "Analyze the detected question for Gujlish, rural slang, or common errors (e.g., 'prakash-shakti' instead of 'prakash-sanshleshan'). Map it to the correct term and concept as per the GSEB syllabus. Inform the student of the corrected term in Gujarati, and then proceed to the lesson."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f75",
+        "69798191db21490007449f76"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+      },
+      "buttonTool": null,
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6b",
+      "name": "Adaptive teaching with rural contextualization",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "Based on the clarified or corrected question, deliver the answer strictly as per the GSEB syllabus. Determine {length} and {vf_memory}: If 'Direct', give a 1-sentence answer; if 'Medium', 3 sentences; if 'Detailed', provide a step-wise breakdown using the '3-Step Rule' and include a rural Gujarat context example (e.g., farming, Sabarmati river, dairy, local temple, etc.). Always use clear Gujarati script and simple language, especially if {vf_memory} indicates the student needs extra help. After explaining, always ask: 'Mitra, do you want to take a quick 1-question quiz to test your knowledge?'"
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f77",
+        "69798191db21490007449f78"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+      },
+      "buttonTool": null,
+      "cardTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+      },
+      "carouselTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Displays a carousel of up to 10 cards, each containing a title, description, image, and optional action buttons."
+      },
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6c",
+      "name": "Repeat explanation or simplify further",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "If the student is struggling (detected via {vf_memory} or explicit feedback), use even simpler Gujarati and break the answer down further. Repeat the 3-step explanation with a new or simpler rural example. Again, end by offering the quick quiz."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f79",
+        "69798191db21490007449f7a"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+      },
+      "buttonTool": null,
+      "cardTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+      },
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6d",
+      "name": "Quiz generation and knowledge check",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "Generate a single, clear multiple-choice quiz question in Gujarati directly related to the topic just explained. Use 4 options with only one correct answer, delivered in Gujarati script. Wait for the student's response."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f7b",
+        "69798191db21490007449f7c"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": null,
+      "buttonTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Displays a UI picker when the user needs to select one option from a predefined list (up to 5 options)."
+      },
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6e",
+      "name": "Positive reinforcement and completion",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "Congratulate the student warmly in Gujarati for their correct answer. Encourage them to keep learning and tell them that their Vidya Mitra is always here to help. Politely end the session unless the student asks another question."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f7d"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": null,
+      "buttonTool": null,
+      "cardTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+      },
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+      },
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f6f",
+      "name": "Explain the correct answer and encourage retry",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "Gently explain in Gujarati why the correct answer is right, using the '3-Step Rule' and rural example if needed. Encourage the student and ask if they want another quiz on the same topic or a new question."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f7e",
+        "69798191db21490007449f7f"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": null,
+      "buttonTool": null,
+      "cardTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Summarizes the assistant's response in a visual card with a title, image, description, and optional action buttons."
+      },
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f70",
+      "name": "Non-educational or inappropriate content handler",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "If the student's message is unrelated to studies (entertainment, violence, games, etc.), gently redirect: 'Hu tamaro Vidya Mitra chu. Chalo aapne abhyas par dhyan apiye!'. Encourage focus on learning before politely ending the session."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f80"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": null,
+      "buttonTool": null,
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+      },
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "69798191db21490007449f71",
+      "name": "Unknown or out-of-syllabus answer handler",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {
+        "model": "claude-4-sonnet",
+        "maxTokens": 5000,
+        "temperature": 0.3,
+        "reasoningEffort": null
+      },
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "If a question cannot be answered based on GSEB syllabus, reply in Gujarati: 'Mane kshama karjo, hu aa vise tapas kari ne tamne janavis.'. End the session politely, inviting the student to ask something else from the syllabus."
+          ]
+        }
+      ],
+      "pathToolOrder": [
+        "69798191db21490007449f81"
+      ],
+      "webSearchTool": null,
+      "knowledgeBaseTool": null,
+      "buttonTool": null,
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Ends the current interaction or session with the user. Use when no further assistance is required. Do not mention the tool - simply conclude the conversation politely and naturally."
+      },
+      "createdAt": "2026-01-28T03:25:06.000Z",
+      "updatedAt": "2026-01-28T03:25:06.000Z",
+      "updatedByID": 1927436
+    },
+    {
+      "id": "6979d1d7c3cad8efe89eab3d",
+      "name": "Untitled agent",
+      "createdByID": 1927436,
+      "folderID": null,
+      "settings": {},
+      "description": null,
+      "instructions": [
+        {
+          "text": [
+            "\"You are Vidya Mitra, an AI Saarthi for rural students in Gujarat. You have just been provided an image of a textbook page or a handwritten question.\n\nYour Task:\n\nAnalyze the image: Identify the specific educational question, math problem, or science diagram.\n\nExplain in Gujarati: Provide a clear, step-by-step explanation in simple Gujarati.\n\nLocal Context: Use Saurashtri metaphors or rural examples (like farming or local markets) to make the concept easy to understand.\n\nMath/Science Rules: If it is a math problem, show every step of the calculation. If it is science, explain the 'why' behind the concept.\n\nSafety: If the image is not educational, politely redirect the student to their studies.\n\nCitation (Mandatory): End every response with: 'આ માહિતી તમારા પાઠ્યપુસ્તકના GSEB અભ્યાસક્રમ પર આધારિત છે.'\""
+          ]
+        }
+      ],
+      "pathToolOrder": [],
+      "webSearchTool": {
+        "enabled": false,
+        "messages": null,
+        "description": "Search the web when external, fresh, or currently updated information is required to answer the user's query accurately."
+      },
+      "knowledgeBaseTool": {
+        "enabled": true,
+        "messages": null,
+        "description": "Searches an external knowledge base to retrieve relevant information, supplementing or replacing the language model's internal context."
+      },
+      "buttonTool": null,
+      "cardTool": null,
+      "carouselTool": null,
+      "callForwardTool": null,
+      "endTool": null,
+      "createdAt": "2026-01-28T09:07:35.000Z",
+      "updatedAt": "2026-01-28T09:09:09.000Z",
+      "updatedByID": 1927436
+    }
+  ],
+  "agentAPITools": [],
+  "agentFlowTools": [],
+  "agentPathTools": [
+    {
+      "id": "69798191db21490007449f72",
+      "name": "Unclear or non-educational request",
+      "agentID": "69798191db21490007449f69",
+      "description": "Triggered when the request is unrelated to studies (entertainment, violence, games) or is unclear even after detection.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f73",
+      "name": "Requires content correction or Gujlish decoding",
+      "agentID": "69798191db21490007449f69",
+      "description": "Detected voice-to-text, Gujlish, or rural slang requiring correction and mapping to the correct GSEB concept.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f74",
+      "name": "GSEB-aligned clear question",
+      "agentID": "69798191db21490007449f69",
+      "description": "The request is clearly educational and fits the GSEB curriculum; ready for answer delivery.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f75",
+      "name": "Corrected and mapped to GSEB topic",
+      "agentID": "69798191db21490007449f6a",
+      "description": "After auto-correction, the query is now mapped to the appropriate GSEB lesson content.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f76",
+      "name": "Unable to auto-correct or unknown concept",
+      "agentID": "69798191db21490007449f6a",
+      "description": "Correction failed or the term is not in the GSEB syllabus.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f77",
+      "name": "Student accepts quiz",
+      "agentID": "69798191db21490007449f6b",
+      "description": "The student wants to attempt a knowledge check quiz.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f78",
+      "name": "Student rejects quiz or wants more explanation",
+      "agentID": "69798191db21490007449f6b",
+      "description": "The student does not want a quiz or requests further simplification/elaboration.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f79",
+      "name": "Student now ready for quiz",
+      "agentID": "69798191db21490007449f6c",
+      "description": "The student is ready to attempt a quiz after further explanation.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7a",
+      "name": "Student still not ready or confused",
+      "agentID": "69798191db21490007449f6c",
+      "description": "Student remains confused or requests information outside the GSEB scope.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7b",
+      "name": "Student answers correctly",
+      "agentID": "69798191db21490007449f6d",
+      "description": "The student selects the correct answer.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7c",
+      "name": "Student answers incorrectly",
+      "agentID": "69798191db21490007449f6d",
+      "description": "The student selects an incorrect answer.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7d",
+      "name": "Session ends",
+      "agentID": "69798191db21490007449f6e",
+      "description": "The learning session concludes positively.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7e",
+      "name": "Student wants another quiz",
+      "agentID": "69798191db21490007449f6f",
+      "description": "Student requests follow-up quiz to reinforce learning.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f7f",
+      "name": "Student wants new or different topic",
+      "agentID": "69798191db21490007449f6f",
+      "description": "Student asks a new question or different topic.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f80",
+      "name": "Session ends after redirection",
+      "agentID": "69798191db21490007449f70",
+      "description": "Session is concluded due to inappropriate or off-topic input.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "69798191db21490007449f81",
+      "name": "Session ends after unknown answer",
+      "agentID": "69798191db21490007449f71",
+      "description": "Session ends kindly because the question is outside the syllabus or not answerable.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T03:25:06.000Z"
+    },
+    {
+      "id": "6979c5bac3cad8efe89eaab4",
+      "name": "📸 ફોટો પાડો",
+      "agentID": "69798191db21490007449f69",
+      "description": "The user wants to take or upload a photo of their textbook or a specific question.",
+      "variableOrder": [],
+      "messages": null,
+      "createdAt": "2026-01-28T08:15:55.000Z"
+    }
+  ],
+  "agentFunctionTools": [],
+  "agentIntegrationTools": [],
+  "agentPathToolVariables": [],
+  "agentFlowToolVariables": [],
+  "agentMcpIntegrationTools": [],
+  "apiTools": [],
+  "apiToolInputVariables": [],
+  "integrationTools": [],
+  "functions": [],
+  "functionPaths": [],
+  "functionVariables": [],
+  "mcpServers": [],
+  "mcpServerTools": [],
+  "mcpIntegrationTools": [],
+  "project": {
+    "type": "chat",
+    "name": "Vidya Mitra",
+    "image": "",
+    "teamID": "2NnOM5M5kr",
+    "members": [],
+    "privacy": "private",
+    "platform": "webchat",
+    "_version": 1.2,
+    "linkType": "STRAIGHT",
+    "creatorID": 1927436,
+    "updatedBy": 1927436,
+    "apiPrivacy": "public",
+    "platformData": {
+      "invocationName": "template project general"
+    },
+    "customThemes": [],
+    "aiAssistSettings": {
+      "aiPlayground": true
+    },
+    "_id": "697981910cc5c60e8ce896e8",
+    "updatedAt": "2026-01-28T09:31:42.277Z",
+    "devVersion": "697981910cc5c60e8ce896e9",
+    "liveVersion": "697981910cc5c60e8ce896ea"
+  },
+  "_version": "1.2",
+  "secrets": [],
+  "variableStates": [],
+  "transcriptEvaluations": [
+    {
+      "name": "Deflection rate",
+      "default": true,
+      "description": null,
+      "type": "boolean",
+      "enabled": false,
+      "prompt": "Determine if the user requested to talk to a human in order to achieve their desired outcome.",
+      "settings": null,
+      "systemTag": null,
+      "truePrompt": "The user did not require the need to talk to a human.",
+      "falsePrompt": "The user required the need to talk to a human agent."
+    },
+    {
+      "name": "Satisfaction score",
+      "default": true,
+      "description": null,
+      "type": "number",
+      "enabled": false,
+      "prompt": "Rate the user's overall satisfaction based on the conversation, using a scale from 1 to 5.",
+      "settings": null,
+      "systemTag": null,
+      "minimumValue": 1,
+      "minimumPrompt": "Look for negative comments or expressions of dissatisfaction to rate the minimum satisfaction.",
+      "maximumValue": 5,
+      "maximumPrompt": "Identify any comments or phrases in the transcript that express the highest level of satisfaction."
+    },
+    {
+      "name": "AI summary",
+      "default": true,
+      "description": null,
+      "type": "string",
+      "enabled": false,
+      "prompt": "Look at the transcript and provide a brief summary of the conversation. Make sure to highlight the outcome of the conversation, and key moments or topics, and the overall tone of the customer.",
+      "settings": null,
+      "systemTag": null
+    }
+  ]
+}
